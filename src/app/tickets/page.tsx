@@ -1,28 +1,56 @@
 import Link from 'next/link';
+import clsx from 'clsx';
+import { LucideCircleCheck, LucideFileText } from 'lucide-react';
 import { initTickets } from '@/data';
 import { ticketPath } from '@/tickets';
+import { Separator } from '@/components/ui/separator';
+import {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardContent,
+} from '@/components/ui/card';
+
+const STATUS_ICONS = {
+  Open: <LucideFileText />,
+  Done: <LucideCircleCheck />,
+};
 
 const TicketsPage = () => {
   return (
-    <div className='flex flex-col gap-12'>
+    <div className='flex flex-col gap-8'>
       <div>
         <h2 className='text-3xl font-bold tracking-tight'>Tickets Page</h2>
         <p className='text-sm'>Your tickets are in here</p>
       </div>
 
-      <div className='flex flex-col items-center flex-1 gap-6'>
-        {initTickets.map((ticket) => (
-          <div
-            key={ticket.id}
-            className='w-full max-w-[350px] p-4 border border-neutral-300 rounded'
-          >
-            <h3 className='text-lg font-semibold truncate'>{ticket.title}</h3>
-            <p className='text-sm truncate text-neutral-500'>{ticket.content}</p>
+      <Separator />
 
-            <Link href={ticketPath(ticket.id)} className='text-sm underline'>
-              View
-            </Link>
-          </div>
+      <div className='flex flex-col items-center flex-1 gap-6 animate-fade-in'>
+        {initTickets.map((ticket) => (
+          <Card key={ticket.id} className='w-full max-w-[350px]'>
+            <CardHeader>
+              <CardTitle className='flex gap-x-2'>
+                <span>{STATUS_ICONS[ticket.status]}</span>
+                <span className='truncate'>{ticket.title}</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <span
+                className={clsx('line-clamp-3 whitespace-break-spaces', {
+                  'line-through': ticket.status === 'Done',
+                })}
+              >
+                {ticket.content}
+              </span>
+            </CardContent>
+            <CardFooter>
+              <Link href={ticketPath(ticket.id)} className='text-sm underline'>
+                View
+              </Link>
+            </CardFooter>
+          </Card>
         ))}
       </div>
     </div>
