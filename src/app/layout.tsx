@@ -1,9 +1,7 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import Link from 'next/link';
-import { homePath, ticketsPath } from '@/tickets';
-import { Button } from '@/components/ui/button';
+import { Header } from '@/components/header';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -28,22 +26,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <nav className='flex justify-between gap-5 border-b-2 py-2 px-4'>
-          {/* fix /ticket/404 or make nav a component*/}
-          <div>
-            <Button asChild variant='ghost'>
-              <Link href={homePath()}>
-                <h1 className='text-lg font-semibold'>Ticket Bounty</h1>
-              </Link>
-            </Button>
-          </div>
-          <div>
-            <Button asChild variant='outline'>
-              <Link href={ticketsPath()}>Tickets</Link>
-            </Button>
-          </div>
-        </nav>
-        <main className='flex flex-col p-12'>{children}</main>
+        <Header />
+        <main className='flex flex-col p-12 min-h-screen overflow-y-auto overflow-x-hidden'>
+          {children}
+        </main>
       </body>
     </html>
   );

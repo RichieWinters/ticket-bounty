@@ -1,4 +1,5 @@
 import { initTickets } from '@/data';
+import { Placeholder } from '@/components/placeholder';
 
 type TicketPageProps = {
   params: {
@@ -10,7 +11,7 @@ function TicketPage({ params }: TicketPageProps) {
   const ticket = initTickets.find((ticket) => ticket.id === params.ticketId);
 
   if (!ticket) {
-    return <div>Ticket not found</div>;
+    return <Placeholder label='Ticket not found' />;
   }
 
   return (

@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { LucideCircleCheck, LucideFileText } from 'lucide-react';
 import { initTickets } from '@/data';
 import { ticketPath } from '@/tickets';
-import { Separator } from '@/components/ui/separator';
 import {
   Card,
   CardHeader,
@@ -11,6 +10,7 @@ import {
   CardTitle,
   CardContent,
 } from '@/components/ui/card';
+import { Heading } from '@/components/heading';
 
 const STATUS_ICONS = {
   Open: <LucideFileText />,
@@ -20,12 +20,7 @@ const STATUS_ICONS = {
 const TicketsPage = () => {
   return (
     <div className='flex flex-col gap-8'>
-      <div>
-        <h2 className='text-3xl font-bold tracking-tight'>Tickets Page</h2>
-        <p className='text-sm'>Your tickets are in here</p>
-      </div>
-
-      <Separator />
+      <Heading title='Tickets Page' description='Your tickets are in here' />
 
       <div className='flex flex-col items-center flex-1 gap-6 animate-fade-in'>
         {initTickets.map((ticket) => (
