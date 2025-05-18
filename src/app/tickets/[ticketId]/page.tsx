@@ -1,5 +1,6 @@
 import { initTickets } from '@/data';
 import { Placeholder } from '@/components/placeholder';
+import { TicketItem } from '@/features/ticket/components/ticket-item';
 
 type TicketPageProps = {
   params: {
@@ -15,9 +16,8 @@ function TicketPage({ params }: TicketPageProps) {
   }
 
   return (
-    <div>
-      <h2 className='text-lg'>{ticket.title}</h2>
-      <p className='text-sm'>{ticket.content}</p>
+    <div className='flex justify-center animate-fade-in'>
+      <TicketItem ticket={ticket} isDetail />
     </div>
   );
 }

@@ -9,9 +9,10 @@ import { Button } from '@/components/ui/button';
 
 type TicketItemProps = {
   ticket: Ticket;
+  isDetail?: boolean;
 };
 
-const TicketItem = ({ ticket }: TicketItemProps) => {
+const TicketItem = ({ ticket, isDetail }: TicketItemProps) => {
   const ticketButton = (
     <Button variant='outline' size='icon' asChild>
       <Link href={ticketPath(ticket.id)} className='text-sm'>
@@ -21,25 +22,31 @@ const TicketItem = ({ ticket }: TicketItemProps) => {
   );
 
   return (
-    <div className='flex gap-x-1 w-full max-w-[420px]'>
+    <div
+      className={clsx('flex gap-x-1 w-full', {
+        'max-w-[420px]': !isDetail,
+        'max-w-[620px]': isDetail,
+      })}
+    >
       <Card className='w-full '>
         <CardHeader>
-          <CardTitle className='flex gap-x-2'>
+          <CardTitle className='flex gap-x-2 text-lg items-center'>
             <span>{STATUS_ICONS[ticket.status]}</span>
             <span className='truncate'>{ticket.title}</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <span
-            className={clsx('line-clamp-3 whitespace-break-spaces', {
+            className={clsx('whitespace-break-spaces', {
               'line-through': ticket.status === 'Done',
+              'line-clamp-3': !isDetail,
             })}
           >
             {ticket.content}
           </span>
         </CardContent>
       </Card>
-      <div className='flex flex-col gap-y-2'>{ticketButton}</div>
+      {isDetail ? null : <div className='flex flex-col gap-y-2'>{ticketButton}</div>}
     </div>
   );
 };
