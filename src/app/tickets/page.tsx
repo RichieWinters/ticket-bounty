@@ -1,17 +1,15 @@
-import { initTickets } from '@/data';
+import { Suspense } from 'react';
 import { Heading } from '@/components/heading';
-import { TicketItem } from '@/features/ticket/components/ticket-item';
+import { TicketList } from '@/features/ticket/components/ticket-list';
+import { Spinner } from '@/components/spinner';
 
 const TicketsPage = () => {
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col flex-1 gap-8'>
       <Heading title='Tickets Page' description='Your tickets are in here' />
-
-      <div className='flex flex-col items-center flex-1 gap-6 animate-fade-in'>
-        {initTickets.map((ticket) => (
-          <TicketItem key={ticket.id} ticket={ticket} />
-        ))}
-      </div>
+      <Suspense fallback={<Spinner />}>
+        <TicketList />
+      </Suspense>
     </div>
   );
 };
