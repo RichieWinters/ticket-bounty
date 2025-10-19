@@ -1,6 +1,8 @@
 import Link from 'next/link';
-import { homePath, ticketsPath } from '@/tickets';
+
 import { Button } from '@/components/ui/button';
+import { homePath, ticketsPath } from '@/tickets';
+
 import { ThemeSwitcher } from './theme/theme-switcher';
 
 const Header = () => {

@@ -1,6 +1,7 @@
 import Link from 'next/link';
-import { ticketsPath } from '@/tickets';
+
 import { Heading } from '@/components/heading';
+import { ticketsPath } from '@/tickets';
 
 const HomePage = () => {
   return (
