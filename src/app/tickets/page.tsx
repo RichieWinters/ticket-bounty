@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { CardCompact } from '@/components/card-compact';
 import { Heading } from '@/components/heading';
 import { Spinner } from '@/components/spinner';
-import { TicketCreateForm } from '@/features/ticket/components/ticket-create-form';
+import { TicketUpsertForm } from '@/features/ticket/components/ticket-upsert-form';
 import { TicketList } from '@/features/ticket/components/ticket-list';
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +17,7 @@ const TicketsPage = () => {
         title="New Ticket"
         description="Create a new ticket"
         className="max-w-[420px] self-center"
-        content={<TicketCreateForm />}
+        content={<TicketUpsertForm />}
       />
 
       <Suspense fallback={<Spinner />}>
