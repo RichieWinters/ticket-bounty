@@ -4,20 +4,20 @@ const prisma = new PrismaClient();
 
 const tickets = [
   {
-    id: '1',
+    id: crypto.randomUUID(),
     title: 'Ticket 1',
     content: "First ticket this is it. I'm from the database",
     status: 'Done' as const,
   },
   {
-    id: '2',
+    id: crypto.randomUUID(),
     title: 'Ticket 2',
     content: "That's the second ticket. I'm from the database",
     status: 'Open' as const,
   },
   {
-    id: '3',
-    title: 'Ticket 2',
+    id: crypto.randomUUID(),
+    title: 'Ticket 3',
     content: "I'm the third ticket. And I'm from the database",
     status: 'Open' as const,
   },
